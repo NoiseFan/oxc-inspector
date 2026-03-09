@@ -10,6 +10,8 @@
         </span>
         <div class="flex items-center gap-3">
             <GitHubLink />
+            <Separator orientation="vertical" />
+            <ModeSwitcher />
         </div>
     </div>
     <slot />
