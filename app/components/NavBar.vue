@@ -18,6 +18,16 @@
                 <ModeSwitcher />
             </div>
         </div>
+        <div class="flex items-center gap-1 text-sm font-medium capitalize">
+            <span class="opacity-50">oxlint version:</span>
+            <span class="font-bold">1.51.0</span>
+            <span class="opacity-50">oxfmt version:</span>
+            <span class="font-bold">1.51.0</span>
+            <span class="opacity-50">,</span>
+            <span class="opacity-50">Composed with</span>
+            <span class="font-bold">74</span>
+            <span class="opacity-50">config items</span>
+        </div>
         <div class="flex justify-start items-center gap-4">
             <Button
                 v-for="menu in navMenus"
