@@ -84,5 +84,20 @@ const navMenus = [
         label: 'oxfmt',
         icon: 'ph:paint-brush-broad-fill',
     },
+    {
+        name: 'migration-rules',
+        label: 'migration rules',
+        icon: 'pajamas:merge',
+    },
+    {
+        name: 'migration-config',
+        label: 'migration configs',
+        icon: 'ph:file-code-duotone',
+    },
+    {
+        name: 'eslint',
+        label: 'eslint configs',
+        icon: 'ph:stack-minus-duotone',
+    },
 ]
 </script>
