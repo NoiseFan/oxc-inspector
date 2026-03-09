@@ -1,8 +1,9 @@
 {
     "name": "oxc-inspector",
     "type": "module",
-    "description": "A visual tool for inspecting and understanding your oxlint and oxfmt config.",
     "packageManager": "pnpm@10.15.1",
+    "description": "A visual tool for inspecting and understanding your oxlint and oxfmt config.",
+    "license": "MIT",
     "homepage": "https://github.com/lonewolfyx/oxc-inspector",
     "bugs": {
         "url": "https://github.com/lonewolfyx/oxc-inspector/issues"
@@ -30,6 +31,7 @@
         "vue-router": "^4.6.4"
     },
     "devDependencies": {
+        "@antfu/eslint-config": "^7.7.0",
         "@nuxt/content": "^3.12.0",
         "@nuxt/eslint": "^1.15.2",
         "@nuxt/eslint-plugin": "^1.15.2",
@@ -50,7 +52,6 @@
         "pre-commit": "npx lint-staged",
         "commit-msg": "node scripts/verify-commit.js"
     },
-    "license": "MIT",
     "lint-staged": {
         "*": "eslint --fix"
     }

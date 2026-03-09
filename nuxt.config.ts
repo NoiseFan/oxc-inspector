@@ -41,15 +41,6 @@ export default defineNuxtConfig({
         ],
     },
 
-    eslint: {
-        config: {
-            stylistic: {
-                indent: 4, // 4, or 'tab'
-                quotes: 'single', // or 'double'
-            },
-        },
-    },
-
     shadcn: {
         prefix: '',
         componentDir: './app/components/ui',

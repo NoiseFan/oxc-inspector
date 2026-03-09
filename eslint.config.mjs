@@ -1,6 +1,25 @@
+import { antfu } from '@antfu/eslint-config'
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import nuxt from './.nuxt/eslint.config.mjs'
 
-export default withNuxt(
-    // Your custom configs here
-)
+export default antfu({
+    vue: {
+        overrides: {
+            'vue/block-order': ['error', {
+                order: ['template', 'script', 'style'],
+            }],
+        },
+    },
+    stylistic: {
+        indent: 4, // 4, or 'tab'
+        quotes: 'single', // or 'double'
+    },
+    yaml: {
+        overrides: {
+            'yaml/indent': ['error', 2],
+        },
+    },
+    rules: {
+        'regexp/no-unused-capturing-group': 'off',
+    },
+}).append(nuxt)
