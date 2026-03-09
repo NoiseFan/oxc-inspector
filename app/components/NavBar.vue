@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-4">
         <div class="flex justify-between items-center **:data-[slot=separator]:!h-4">
-            <NuxtLink class="flex items-center gap-2" :to="app.github.link">
+            <NuxtLink class="flex items-center gap-2" :to="app.github.link" target="_blank">
                 <img src="/favicon.svg" class="inline-block size-12" :alt="app.shortTitle">
                 <span
                     :class="cn(
