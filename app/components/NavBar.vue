@@ -34,7 +34,7 @@
                 :key="menu.name"
                 :class="cn(
                     'text-base capitalize',
-                    'rounded shadow-none',
+                    'rounded shadow-none bg-transparent',
                     routeName === menu.name ? 'color-active' : 'hover:border-teal-600/25 hover:bg-teal-400/5',
                 )"
                 variant="outline"
