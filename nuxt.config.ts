@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         'shadcn-nuxt',
     ],
 
+    ssr: false,
     devtools: {
         enabled: true,
     },
