@@ -90,7 +90,7 @@ const navMenus = [
         icon: 'pajamas:merge',
     },
     {
-        name: 'migration-config',
+        name: 'migration-configs',
         label: 'migration configs',
         icon: 'ph:file-code-duotone',
     },
