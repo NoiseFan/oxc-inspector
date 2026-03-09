@@ -17,7 +17,8 @@
         "typecheck": "nuxt typecheck",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
-        "prepare": "simple-git-hooks"
+        "prepare": "simple-git-hooks",
+        "migrate": "npx @oxlint/migrate ./eslint.config.mjs"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.2.1",
@@ -37,10 +38,12 @@
         "@nuxt/eslint": "^1.15.2",
         "@nuxt/eslint-plugin": "^1.15.2",
         "@nuxt/icon": "^2.2.1",
+        "@oxlint/migrate": "^1.51.0",
         "@stylistic/eslint-plugin": "^5.10.0",
         "@types/node": "^25.3.5",
         "@vueuse/nuxt": "^14.2.1",
         "eslint": "^9.39.4",
+        "find-up": "^8.0.0",
         "lint-staged": "^16.3.2",
         "nuxt": "^4.3.1",
         "oxlint": "^1.51.0",
