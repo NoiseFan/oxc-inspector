@@ -1,10 +1,9 @@
 import type { IResolveConfig } from './types'
 import c from 'ansis'
 import { bundleRequire } from 'bundle-require'
-import { resolveConfig, resolveConfigPath } from './config'
+import { resolveConfig, resolveConfigPath, resolveEslintRulesConfig } from './config'
 import { MARK_INFO } from './constants'
 import { ConfigInspectorError } from './error'
-import { resolveEslintRulesConfig } from './rules'
 
 async function readConfig(options: IResolveConfig) {
     let resolvedConfigPath: Awaited<ReturnType<typeof resolveConfigPath>>
