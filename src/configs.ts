@@ -6,8 +6,15 @@ import { MARK_INFO } from './constants'
 
 async function readConfig(options: IResolveConfig) {
     const resolvedConfigPath = await resolveConfigPath(options)
-    const { basePath, lintConfigPath, formatConfigPath, linterVersion, formatVersion }
-        = resolvedConfigPath
+    const {
+        basePath,
+        lintConfigPath,
+        formatConfigPath,
+        eslintConfigPath,
+        linterVersion,
+        formatVersion,
+    } = resolvedConfigPath
+
     console.log(resolvedConfigPath)
 
     if (lintConfigPath) {
@@ -27,6 +34,17 @@ async function readConfig(options: IResolveConfig) {
         console.log(await (mod.default ?? mod))
     }
 
+    if (eslintConfigPath) {
+        console.log(MARK_INFO, `Reading Eslint config from`, c.blue(eslintConfigPath))
+
+        const { mod } = await bundleRequire({
+            cwd: basePath,
+            filepath: eslintConfigPath,
+            tsconfig: false,
+        })
+        console.log(await (mod.default ?? mod))
+    }
+
     const payload = {
         meta: {
             version: {
@@ -37,6 +55,7 @@ async function readConfig(options: IResolveConfig) {
             basePath,
             lintConfigPath,
             formatConfigPath,
+            eslintConfigPath,
         },
     }
 
