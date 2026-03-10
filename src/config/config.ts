@@ -4,6 +4,7 @@ import process from 'node:process'
 import { findUp } from 'find-up'
 import { dirname, normalize } from 'pathe'
 import { eslintConfigFilenames, formatConfigFilenames, lintConfigFilenames } from '../constants'
+import { ConfigPathError } from '../error'
 import { getFmtVersion, getLintVersion } from '../utils/version'
 
 export function resolveConfig(): IResolveConfig {
@@ -19,6 +20,10 @@ export async function resolveConfigPath(options: IResolveConfig): Promise<IResol
         = (await findUp(lintConfigFilenames, {
             cwd,
         })) ?? ''
+
+    if (!lintConfigPath) {
+        throw new ConfigPathError(resolve(cwd, lintConfigPath), lintConfigFilenames)
+    }
 
     const formatConfigPath
         = (await findUp(formatConfigFilenames, {

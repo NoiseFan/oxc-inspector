@@ -3,10 +3,23 @@ import c from 'ansis'
 import { bundleRequire } from 'bundle-require'
 import { resolveConfig, resolveConfigPath } from './config'
 import { MARK_INFO } from './constants'
+import { ConfigInspectorError } from './error'
 import { resolveEslintRulesConfig } from './rules'
 
 async function readConfig(options: IResolveConfig) {
-    const resolvedConfigPath = await resolveConfigPath(options)
+    let resolvedConfigPath: Awaited<ReturnType<typeof resolveConfigPath>>
+
+    try {
+        resolvedConfigPath = await resolveConfigPath(options)
+    }
+    catch (error) {
+        if (error instanceof ConfigInspectorError) {
+            error.prettyPrint()
+            process.exit(1)
+        }
+        throw error
+    }
+
     const {
         basePath,
         lintConfigPath,
@@ -15,12 +28,9 @@ async function readConfig(options: IResolveConfig) {
         linterVersion,
         formatVersion,
     } = resolvedConfigPath
-
     console.log(resolvedConfigPath)
 
-    if (lintConfigPath) {
-        console.log(MARK_INFO, `Reading Oxc Linter config from`, c.blue(lintConfigPath))
-    }
+    console.log(MARK_INFO, `Reading Oxc Linter config from`, c.blue(lintConfigPath))
 
     if (formatConfigPath) {
         console.log(MARK_INFO, `Reading Oxc Format config from`, c.blue(formatConfigPath))
