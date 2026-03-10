@@ -1,7 +1,4 @@
 {
-    "compilerOptions": {
-        "moduleResolution": "Bundler"
-    },
     "references": [
         {
             "path": "./.nuxt/tsconfig.app.json"
@@ -14,12 +11,11 @@
         },
         {
             "path": "./.nuxt/tsconfig.node.json"
+        },
+        {
+            "path": "./tsconfig.cli.json"
         }
     ],
     // https://nuxt.com/docs/guide/concepts/typescript
-    "files": [],
-    "include": [
-        "./shared/**/*.d.ts",
-        "./src/"
-    ]
+    "files": []
 }

@@ -1,11 +1,13 @@
-import type { IResolveConfig } from './types'
+import type { ILinterInspectorPayload, IResolveConfig } from './types'
+import { writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import c from 'ansis'
-import { bundleRequire } from 'bundle-require'
 import { resolveConfig, resolveConfigPath, resolveEslintRulesConfig } from './config'
+import { resolveOXLintConfig } from './config/oxlint'
 import { MARK_INFO } from './constants'
 import { ConfigInspectorError } from './error'
 
-async function readConfig(options: IResolveConfig) {
+async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayload> {
     let resolvedConfigPath: Awaited<ReturnType<typeof resolveConfigPath>>
 
     try {
@@ -29,30 +31,16 @@ async function readConfig(options: IResolveConfig) {
     } = resolvedConfigPath
     console.log(resolvedConfigPath)
 
-    console.log(MARK_INFO, `Reading Oxc Linter config from`, c.blue(lintConfigPath))
+    const oxlint = await resolveOXLintConfig(resolvedConfigPath)
 
     if (formatConfigPath) {
         console.log(MARK_INFO, `Reading Oxc Format config from`, c.blue(formatConfigPath))
     }
 
-    if (lintConfigPath.endsWith('.ts')) {
-        const { mod } = await bundleRequire({
-            cwd: basePath,
-            filepath: lintConfigPath,
-            tsconfig: false,
-        })
-        console.log(await (mod.default ?? mod))
-    }
-
     const eslintConfig = await resolveEslintRulesConfig(resolvedConfigPath)
 
     return {
-        oxlint: {
-            // current .oxlint.json
-            config: {},
-            // default oxlint rule option
-            rules: {},
-        },
+        oxlint,
         oxfmt: {
             // current .oxfmt.json
             config: {},
@@ -79,4 +67,7 @@ async function readConfig(options: IResolveConfig) {
     }
 }
 
-readConfig(resolveConfig()).then(r => console.log(r))
+readConfig(resolveConfig()).then((r) => {
+    console.log(r)
+    writeFileSync(resolve(r.meta.basePath, 'oxc-inspector.meta.json'), JSON.stringify(r, null, 2), 'utf-8')
+})

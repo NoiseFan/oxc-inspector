@@ -81,6 +81,9 @@ importers:
       find-up:
         specifier: ^8.0.0
         version: 8.0.0
+      json-schema:
+        specifier: ^0.4.0
+        version: 0.4.0
       lint-staged:
         specifier: ^16.3.2
         version: 16.3.2
@@ -96,6 +99,9 @@ importers:
       oxlint:
         specifier: ^1.51.0
         version: 1.51.0
+      oxlint-rules-meta:
+        specifier: ^0.0.2
+        version: 0.0.2
       pathe:
         specifier: ^2.0.3
         version: 2.0.3
@@ -4055,6 +4061,9 @@ packages:
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
+  json-schema@0.4.0:
+    resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
+
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
@@ -4660,6 +4669,9 @@ packages:
     resolution: {integrity: sha512-Kd47gakZAU/i9KkXv3F0EDRoMvSso9O5966kflf9zYto0oZ0NN+Fh5vKKrLwp2Mkt0efYBk5LjCAS0BNC0y0eQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
+
+  oxlint-rules-meta@0.0.2:
+    resolution: {integrity: sha512-Iiovr1fbGXm6pDJ8pSI7cKgLwVpx9S5FwXfRIgaj2AhBh1fcz7iIbUgUzLhf5uAfUcz6RWjqHr9Uijp6g3CmBQ==}
 
   oxlint@1.51.0:
     resolution: {integrity: sha512-g6DNPaV9/WI9MoX2XllafxQuxwY1TV++j7hP8fTJByVBuCoVtm3dy9f/2vtH/HU40JztcgWF4G7ua+gkainklQ==}
@@ -10081,6 +10093,8 @@ snapshots:
 
   json-schema-traverse@0.4.1: {}
 
+  json-schema@0.4.0: {}
+
   json-stable-stringify-without-jsonify@1.0.1: {}
 
   json5@2.2.3: {}
@@ -11184,6 +11198,8 @@ snapshots:
       '@oxfmt/binding-win32-arm64-msvc': 0.37.0
       '@oxfmt/binding-win32-ia32-msvc': 0.37.0
       '@oxfmt/binding-win32-x64-msvc': 0.37.0
+
+  oxlint-rules-meta@0.0.2: {}
 
   oxlint@1.51.0:
     optionalDependencies:

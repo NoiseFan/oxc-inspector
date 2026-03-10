@@ -26,5 +26,6 @@ export default antfu({
         'no-console': 'off',
         'regexp/no-unused-capturing-group': 'off',
         'node/prefer-global/process': 'off',
+        'e18e/prefer-spread-syntax': 'off',
     },
 }).append(nuxt)
