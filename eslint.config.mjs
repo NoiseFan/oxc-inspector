@@ -20,6 +20,7 @@ export default antfu({
         },
     },
     rules: {
+        'no-console': 'off',
         'regexp/no-unused-capturing-group': 'off',
         'node/prefer-global/process': 'off',
     },
