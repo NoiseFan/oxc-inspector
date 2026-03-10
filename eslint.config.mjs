@@ -5,9 +5,12 @@ import nuxt from './.nuxt/eslint.config.mjs'
 export default antfu({
     vue: {
         overrides: {
-            'vue/block-order': ['error', {
-                order: ['template', 'script', 'style'],
-            }],
+            'vue/block-order': [
+                'error',
+                {
+                    order: ['template', 'script', 'style'],
+                },
+            ],
         },
     },
     stylistic: {
