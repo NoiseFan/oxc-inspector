@@ -3,6 +3,7 @@ import c from 'ansis'
 import { bundleRequire } from 'bundle-require'
 import { resolveConfig, resolveConfigPath } from './config'
 import { MARK_INFO } from './constants'
+import { resolveEslintRulesConfig } from './rules'
 
 async function readConfig(options: IResolveConfig) {
     const resolvedConfigPath = await resolveConfigPath(options)
@@ -34,16 +35,7 @@ async function readConfig(options: IResolveConfig) {
         console.log(await (mod.default ?? mod))
     }
 
-    if (eslintConfigPath) {
-        console.log(MARK_INFO, `Reading Eslint config from`, c.blue(eslintConfigPath))
-
-        const { mod } = await bundleRequire({
-            cwd: basePath,
-            filepath: eslintConfigPath,
-            tsconfig: false,
-        })
-        console.log(await (mod.default ?? mod))
-    }
+    await resolveEslintRulesConfig(resolvedConfigPath)
 
     const payload = {
         meta: {
