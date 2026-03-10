@@ -1,41 +1,8 @@
-import type { IResolveConfig, IResolveConfigPath } from './types'
-import process from 'node:process'
+import type { IResolveConfig } from './types'
 import c from 'ansis'
 import { bundleRequire } from 'bundle-require'
-import { findUp } from 'find-up'
-import { dirname, normalize } from 'pathe'
-import { formatConfigFilenames, lintConfigFilenames, MARK_INFO } from './constants'
-import { getFmtVersion, getLintVersion } from './utils/version'
-
-function resolveConfig(): IResolveConfig {
-    return {
-        cwd: process.cwd(),
-    }
-}
-
-async function resolveConfigPath(options: IResolveConfig): Promise<IResolveConfigPath> {
-    const { cwd } = options
-
-    const lintConfigPath
-        = (await findUp(lintConfigFilenames, {
-            cwd,
-        })) ?? ''
-
-    const formatConfigPath
-        = (await findUp(formatConfigFilenames, {
-            cwd,
-        })) ?? ''
-
-    const basePath = normalize(dirname(lintConfigPath))
-
-    return {
-        basePath,
-        lintConfigPath,
-        formatConfigPath,
-        linterVersion: await getLintVersion(),
-        formatVersion: await getFmtVersion(),
-    }
-}
+import { resolveConfig, resolveConfigPath } from './config'
+import { MARK_INFO } from './constants'
 
 async function readConfig(options: IResolveConfig) {
     const resolvedConfigPath = await resolveConfigPath(options)
