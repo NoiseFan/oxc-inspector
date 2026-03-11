@@ -52,7 +52,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { NavBar } from '#shared/types'
 import { cn } from '~/lib/utils'
 
 defineOptions({
