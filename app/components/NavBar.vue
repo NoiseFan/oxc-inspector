@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col gap-4">
         <div class="flex justify-between items-center **:data-[slot=separator]:!h-4">
-            <NuxtLink class="flex items-center gap-2" :to="app.github.link" target="_blank">
-                <img src="/favicon.svg" class="inline-block size-12" :alt="app.shortTitle">
+            <NuxtLink :to="app.github.link" class="flex items-center gap-2" target="_blank">
+                <img :alt="app.shortTitle" class="inline-block size-12" src="/favicon.svg">
                 <span
                     :class="cn(
                         'text-2xl capitalize',
@@ -21,8 +21,10 @@
         <div class="flex items-center gap-1 text-sm font-medium capitalize">
             <span class="opacity-50">oxlint version:</span>
             <span class="font-bold">{{ metaOptions.version.oxlint }}</span>
-            <span class="opacity-50">oxfmt version:</span>
-            <span class="font-bold">{{ metaOptions.version.oxfmt }}</span>
+            <template v-if="metaOptions.version.oxfmt">
+                <span class="opacity-50">oxfmt version:</span>
+                <span class="font-bold">{{ metaOptions.version.oxfmt }}</span>
+            </template>
             <span class="opacity-50">,</span>
             <span class="opacity-50">Composed with</span>
             <span class="font-bold">74</span>
