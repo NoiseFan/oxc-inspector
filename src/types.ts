@@ -3,6 +3,7 @@
 import type { RuleMetaData } from '@typescript-eslint/utils/ts-eslint'
 import type { Linter } from 'eslint'
 import type { JSONSchema4 } from 'json-schema'
+import type { FormatOptions } from 'oxfmt'
 import type { AllowWarnDeny, DummyRule, DummyRuleMap, ExternalPluginEntry } from 'oxlint'
 
 export interface IResolveConfig {
@@ -93,12 +94,25 @@ export interface IOXLintConfig {
     rules: IResolveLinterConfigRules
 }
 
+export interface IFormatOverRides {
+    excludeFiles: string[]
+    files: string[]
+    options: FormatOptions
+}
+
+export interface IFormatOptions extends FormatOptions {
+    overrides?: IFormatOverRides[]
+}
+
+export type IFormatConfigOptions = FormatOptions | IFormatOverRides
+
+export type IFormatConfigMeta = IFormatConfigOptions & {
+    name: string
+}
+
 export interface ILinterInspectorPayload {
     oxlint: IOXLintConfig
-    oxfmt: {
-        config: object
-        rules: object
-    }
+    oxfmt: IFormatConfigMeta[] | null
     eslint: Omit<ESLintConfig, 'dependencies'>
     meta: {
         version: {

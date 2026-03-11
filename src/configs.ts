@@ -1,9 +1,13 @@
 import type { ILinterInspectorPayload, IResolveConfig } from './types'
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import c from 'ansis'
-import { resolveConfig, resolveConfigPath, resolveEslintRulesConfig, resolveOXLintConfig } from './config'
-import { MARK_INFO } from './constants'
+import {
+    resolveConfig,
+    resolveConfigPath,
+    resolveEslintRulesConfig,
+    resolveOXFormatConfig,
+    resolveOXLintConfig,
+} from './config'
 import { ConfigInspectorError } from './error'
 
 async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayload> {
@@ -30,22 +34,15 @@ async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayl
     } = resolvedConfigPath
     console.log(resolvedConfigPath)
 
-    const oxlint = await resolveOXLintConfig(resolvedConfigPath)
+    const oxfmt = await resolveOXFormatConfig(resolvedConfigPath)
 
-    if (formatConfigPath) {
-        console.log(MARK_INFO, `Reading Oxc Format config from`, c.blue(formatConfigPath))
-    }
+    const oxlint = await resolveOXLintConfig(resolvedConfigPath)
 
     const eslintConfig = await resolveEslintRulesConfig(resolvedConfigPath)
 
     return {
         oxlint,
-        oxfmt: {
-            // current .oxfmt.json
-            config: {},
-            // default oxfmt rule option
-            rules: {},
-        },
+        oxfmt,
         eslint: {
             // current eslint.config.{j,t,mj,mt}s
             configs: eslintConfig.configs,
