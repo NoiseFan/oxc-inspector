@@ -48,7 +48,7 @@ async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayl
         },
         eslint: {
             // current eslint.config.{j,t,mj,mt}s
-            config: eslintConfig.configs,
+            configs: eslintConfig.configs,
             // default eslint config
             rules: eslintConfig.rules,
         },
