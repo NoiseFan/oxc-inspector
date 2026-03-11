@@ -20,9 +20,9 @@
         </div>
         <div class="flex items-center gap-1 text-sm font-medium capitalize">
             <span class="opacity-50">oxlint version:</span>
-            <span class="font-bold">1.51.0</span>
+            <span class="font-bold">{{ metaOptions.version.oxlint }}</span>
             <span class="opacity-50">oxfmt version:</span>
-            <span class="font-bold">1.51.0</span>
+            <span class="font-bold">{{ metaOptions.version.oxfmt }}</span>
             <span class="opacity-50">,</span>
             <span class="opacity-50">Composed with</span>
             <span class="font-bold">74</span>
@@ -52,6 +52,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useConfigInspector } from '~/components/Config'
 import { cn } from '~/lib/utils'
 
 defineOptions({
@@ -99,4 +100,6 @@ const navMenus = [
         icon: 'ph:stack-minus-duotone',
     },
 ]
+
+const { metaOptions } = useConfigInspector()
 </script>

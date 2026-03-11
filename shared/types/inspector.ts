@@ -39,4 +39,5 @@ export interface IConfigInspector {
     loading: Ref<boolean>
     payload?: ShallowRef<ILinterInspectorPayload>
     oxFormat: ComputedRef<IFormatConfigMeta[] | null>
+    metaOptions: ComputedRef<ILinterInspectorPayload['meta']>
 }
