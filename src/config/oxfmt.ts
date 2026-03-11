@@ -49,6 +49,9 @@ export async function resolveOXFormatConfig(options: IResolveConfigPath): Promis
     if (rawConfigs.overrides) {
         rawConfigs.overrides?.forEach((override, index) => {
             const name = `oxfmt/override/${index + 1}`
+            if (override.files) {
+                override.files = Array.isArray(override.files) ? override.files : [override.files]
+            }
             configs.set(name, {
                 name,
                 ...override,
