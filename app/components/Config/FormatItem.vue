@@ -20,41 +20,55 @@
                 <ColorConfigName :name="format.name" />
             </span>
             <div class="flex gap-4 items-center">
-                <div
-                    :class="cn(
-                        'flex gap-2 items-center',
-                        format?.files ? 'text-orange-500' : 'opacity-25',
-                    )"
-                >
-                    <Icon
-                        mode="svg"
-                        name="ph:file-magnifying-glass-duotone"
-                    />
-                    <span class="text-sm min-w-6 font-mono font-medium">
-                        {{ format.files ? (Array.isArray(format.files) ? format.files.length : 1) : '' }}
-                    </span>
-                    <!-- files -->
-                </div>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <div
+                            :class="cn(
+                                'flex gap-2 items-center',
+                                format?.files ? 'text-orange-500' : 'opacity-25',
+                            )"
+                        >
+                            <Icon
+                                mode="svg"
+                                name="ph:file-magnifying-glass-duotone"
+                            />
+                            <span class="text-sm min-w-6 font-mono font-medium">
+                                {{ format.files ? (Array.isArray(format.files) ? format.files.length : 1) : '' }}
+                            </span>
+                            <!-- files -->
+                        </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>{{ format.files ? (Array.isArray(format.files) ? format.files.length : 1) : '0' }} Files</p>
+                    </TooltipContent>
+                </Tooltip>
                 <!--                <div class="flex gap-2 items-center opacity-25"> -->
                 <!--                    <Icon mode="svg" name="ph:eye-closed-duotone" /> -->
                 <!--                    <span class="text-sm min-w-6 font-mono font-medium">24</span> -->
                 <!--                    &lt;!&ndash; ignorePatterns &ndash;&gt; -->
                 <!--                </div> -->
-                <div
-                    :class="cn(
-                        Object.values(format?.options ?? {}).length ? 'text-green-500' : 'opacity-25',
-                    )"
-                    class="flex gap-2 items-center"
-                >
-                    <Icon
-                        mode="svg"
-                        name="ph:sliders-duotone"
-                    />
-                    <span class="text-sm min-w-6 font-mono font-medium">
-                        {{ Object.values(format?.options ?? {}).length }}
-                    </span>
-                    <!-- options -->
-                </div>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <div
+                            :class="cn(
+                                Object.values(format?.options ?? {}).length ? 'text-green-500' : 'opacity-25',
+                            )"
+                            class="flex gap-2 items-center"
+                        >
+                            <Icon
+                                mode="svg"
+                                name="ph:sliders-duotone"
+                            />
+                            <span class="text-sm min-w-6 font-mono font-medium">
+                                {{ Object.values(format?.options ?? {}).length }}
+                            </span>
+                            <!-- options -->
+                        </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>{{ Object.values(format?.options ?? {}).length }} Options</p>
+                    </TooltipContent>
+                </Tooltip>
             </div>
         </CollapsibleTrigger>
 
