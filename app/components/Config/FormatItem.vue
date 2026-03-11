@@ -9,9 +9,9 @@
             />
         </template>
         <div v-if="format.files && Object.values(format.files).length" class="flex gap-2 items-start">
-            <Icon class="my-1 flex-none" mode="svg" name="ph:eye-closed-duotone" />
+            <Icon class="my-1 flex-none text-lg" mode="svg" name="ph:eye-closed-duotone" />
             <div class="flex flex-col gap-3">
-                <span class="text-sm font-mono font-medium">Ignore files globally</span>
+                <span class="font-mono font-medium">Ignore files globally</span>
                 <div class="flex gap-2 items-center flex-wrap">
                     <Badge
                         v-for="files in format.files"
@@ -43,9 +43,9 @@
         <!--            </div> -->
 
         <div class="flex gap-2 items-start">
-            <Icon class="my-1 flex-none" mode="svg" name="ph:sliders-duotone" />
+            <Icon class="my-1 flex-none text-lg" mode="svg" name="ph:sliders-duotone" />
             <div class="flex flex-col gap-3 w-full">
-                <span class="text-sm font-mono font-medium">Options</span>
+                <span class="font-mono font-medium">Options</span>
                 <div class="flex flex-col border rounded-lg w-full">
                     <div class="overflow-auto p-2 px-3 bg-zinc-50 rounded-t-lg">
                         formatOptions
