@@ -40,7 +40,7 @@ function resolveConfigRules(
             rules.get(rule)!.push({
                 level: getRuleLevel(dummyRule as DummyRule),
                 options: Array.isArray(dummyRule) ? dummyRule.slice(1) : {},
-                meta: rawRules[rule] ?? rawRules[rule.split('/').pop()],
+                meta: rawRules[rule] ?? rawRules[rule.split('/').pop()!],
             })
         })
     }
