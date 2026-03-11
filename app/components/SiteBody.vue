@@ -12,7 +12,7 @@
                 />
             </div>
         </div>
-        <div class="flex grow flex-col z-10 px-4 lg:px-14 py-8 lg:py-10">
+        <div class="flex grow flex-col z-10 px-4 lg:px-14 py-8 lg:py-10 space-y-8">
             <slot />
         </div>
     </Body>

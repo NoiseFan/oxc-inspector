@@ -1,8 +1,8 @@
 <template>
     <SiteBody>
-        <NuxtLayout>
-            <NuxtPage />
-        </NuxtLayout>
+        <ConfigInspectorContainer>
+            <ConfigInspector />
+        </ConfigInspectorContainer>
     </SiteBody>
 </template>
 

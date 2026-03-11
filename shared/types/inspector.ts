@@ -1,5 +1,5 @@
 import type { FormatOptions } from 'oxfmt'
-import type { Ref, ShallowRef } from 'vue'
+import type { ComputedRef, Ref, ShallowRef } from 'vue'
 import type { ESLintConfig, IOXLintConfig } from '~~/src/types'
 
 export interface IFormatOverRides {
@@ -38,4 +38,5 @@ export interface ILinterInspectorPayload {
 export interface IConfigInspector {
     loading: Ref<boolean>
     payload?: ShallowRef<ILinterInspectorPayload>
+    oxFormat: ComputedRef<IFormatConfigMeta[] | null>
 }
