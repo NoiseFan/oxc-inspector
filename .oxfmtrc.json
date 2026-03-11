@@ -4,5 +4,30 @@
     "singleQuote": true,
     "arrowParens": "avoid",
     "quoteProps": "consistent",
-    "experimentalSortPackageJson": false
+    "experimentalSortPackageJson": false,
+    "overrides": [
+        {
+            "files": "*.md",
+            "options": {
+                "semi": true,
+                "singleQuote": false,
+                "arrowParens": "always",
+                "quoteProps": "preserve",
+                "experimentalSortPackageJson": true
+            }
+        },
+        {
+            "files": ["*.test.js", "*.spec.ts"],
+            "options": {
+                "printWidth": 120
+            }
+        },
+        {
+            "files": ["*.md", "*.html"],
+            "excludeFiles": ["*.min.js"],
+            "options": {
+                "tabWidth": 4
+            }
+        }
+    ]
 }
