@@ -1,7 +1,17 @@
 <template>
-    <div>oxfmt</div>
+    <div class="flex flex-col space-y-6">
+        <template v-if="oxFormat">
+            <ConfigFormatItem
+                v-for="item in oxFormat"
+                :key="item.name"
+                :format="item"
+            />
+        </template>
+    </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
+import { useConfigInspector } from '~/components/Config'
 
+const { oxFormat } = useConfigInspector()
 </script>
