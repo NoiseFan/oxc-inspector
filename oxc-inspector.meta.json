@@ -30412,7 +30412,68 @@
             }
         }
     },
-    "oxfmt": null,
+    "oxfmt": [
+        {
+            "name": "oxfmt/override/1",
+            "files": [
+                "*.md"
+            ],
+            "options": {
+                "semi": true,
+                "singleQuote": false,
+                "arrowParens": "always",
+                "quoteProps": "preserve",
+                "experimentalSortPackageJson": true
+            }
+        },
+        {
+            "name": "oxfmt/override/2",
+            "files": [
+                "*.test.js",
+                "*.spec.ts"
+            ],
+            "options": {
+                "printWidth": 120
+            }
+        },
+        {
+            "name": "oxfmt/override/3",
+            "files": [
+                "*.md",
+                "*.html"
+            ],
+            "excludeFiles": [
+                "*.min.js"
+            ],
+            "options": {
+                "tabWidth": 4
+            }
+        },
+        {
+            "name": "oxfmt/global/default",
+            "options": {
+                "arrowParens": "avoid",
+                "bracketSameLine": false,
+                "bracketSpacing": true,
+                "embeddedLanguageFormatting": "auto",
+                "endOfLine": "lf",
+                "htmlWhitespaceSensitivity": "css",
+                "ignorePatterns": [],
+                "insertFinalNewline": true,
+                "jsxSingleQuote": false,
+                "objectWrap": "preserve",
+                "proseWrap": "preserve",
+                "quoteProps": "consistent",
+                "semi": false,
+                "singleAttributePerLine": false,
+                "singleQuote": true,
+                "sortImports": {},
+                "sortPackageJson": true,
+                "sortTailwindcss": {},
+                "experimentalSortPackageJson": false
+            }
+        }
+    ],
     "eslint": {
         "configs": [
             {
@@ -53675,10 +53736,10 @@
             "oxlint": "1.51.0",
             "oxfmt": "0.37.0"
         },
-        "lastUpdate": 1773222760165,
+        "lastUpdate": 1773223090009,
         "basePath": "/Users/MyApp/lonewolfyx/oxc-inspector",
         "lintConfigPath": "/Users/MyApp/lonewolfyx/oxc-inspector/.oxlintrc.json",
-        "formatConfigPath": "",
+        "formatConfigPath": "/Users/MyApp/lonewolfyx/oxc-inspector/.oxfmtrc.json",
         "eslintConfigPath": "/Users/MyApp/lonewolfyx/oxc-inspector/eslint.config.mjs"
     }
 }
