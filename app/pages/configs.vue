@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col space-y-6">
         <ConfigCard
-            v-for="(linter, index) in oxLinter.configs as IResolveConfigMeta[]"
+            v-for="(linter, index) in configs as IResolveConfigMeta[]"
             :key="linter.name"
             :index="index + 1"
             :title="linter.name"
@@ -81,34 +81,18 @@
                 </div>
             </div>
 
-            <div v-if="linter.rules" class="flex gap-2 items-start">
-                <Icon
-                    class="my-1 flex-none text-xl"
-                    mode="svg"
-                    name="ph:list-dashes-duotone"
-                />
-                <div class="flex-1">
-                    <div class="flex flex-col gap-3">
-                        <span class="font-mono font-medium">Rules</span>
-                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                            <RuleList
-                                v-for="rule in Object.entries(linter.rules)"
-                                :key="rule[0]"
-                                :rule="rule"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ConfigRuleItem v-if="linter.rules" :rules="linter.rules" />
         </ConfigCard>
     </div>
 </template>
 
 <script lang="ts" setup>
-import type { LintPluginOptionsSchema } from '#shared/types/types'
+import type { IResolveConfigMeta, LintPluginOptionsSchema } from '#shared/types/types'
 import type { ExternalPluginEntry } from 'oxlint'
 import { isObject } from '@vueuse/core'
 import { useConfigInspector } from '~/components/Config'
 
 const { oxLinter } = useConfigInspector()
+
+const configs = computed(() => oxLinter.value.configs)
 </script>
