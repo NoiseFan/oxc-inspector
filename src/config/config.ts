@@ -1,4 +1,4 @@
-import type { IResolveConfig, IResolveConfigPath } from '../types'
+import type { IResolveConfig, IResolveConfigPath } from '#shared/types/types'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { findUp } from 'find-up'

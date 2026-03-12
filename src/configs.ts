@@ -1,5 +1,5 @@
 import type { ILinterInspectorPayload } from '#shared/types/inspector'
-import type { IResolveConfig } from './types'
+import type { IResolveConfig } from '#shared/types/types'
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
