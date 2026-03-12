@@ -48,6 +48,7 @@ export interface IRulesMeta {
     }
     defaultOptions: unknown[]
     schema: JSONSchema4
+    options?: unknown[]
 }
 
 export type LintPluginOptionsSchema
