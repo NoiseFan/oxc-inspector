@@ -36,7 +36,7 @@
                                     Option defaults
                                 </TabsTrigger>
                             </TabsList>
-                            <TabsContent v-if="ruleOptions.length" value="state">
+                            <TabsContent v-if="ruleOptions.length" class="flex flex-col gap-2" value="state">
                                 <Shiki
                                     v-for="(options, idx) of ruleOptions"
                                     :key="idx"
