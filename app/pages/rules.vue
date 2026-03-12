@@ -4,7 +4,7 @@
             v-for="rule in oxRules"
             :key="rule.name"
         >
-            {{ rule.name }}
+            <RuleItems :rule="rule" />
         </div>
     </div>
 </template>
