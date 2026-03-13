@@ -7,6 +7,11 @@ import type { AllowWarnDeny, DummyRule, DummyRuleMap, ExternalPluginEntry } from
 
 export type SeverityValue = 'off' | 'warn' | 'error'
 
+export interface ErrorInfo {
+    error: string
+    message?: string
+}
+
 export interface IResolveConfig {
     cwd: string
 }

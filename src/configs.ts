@@ -1,30 +1,12 @@
 import type { ILinterInspectorPayload } from '#shared/types/inspector'
-import type { IResolveConfig } from '#shared/types/types'
-import { writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import type { IResolveConfigPath } from '#shared/types/types'
 import {
-    resolveConfig,
-    resolveConfigPath,
     resolveEslintRulesConfig,
     resolveOXFormatConfig,
     resolveOXLintConfig,
 } from './config'
-import { ConfigInspectorError } from './error'
 
-async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayload> {
-    let resolvedConfigPath: Awaited<ReturnType<typeof resolveConfigPath>>
-
-    try {
-        resolvedConfigPath = await resolveConfigPath(options)
-    }
-    catch (error) {
-        if (error instanceof ConfigInspectorError) {
-            error.prettyPrint()
-            process.exit(1)
-        }
-        throw error
-    }
-
+export async function readConfig(resolvedConfigPath: IResolveConfigPath): Promise<ILinterInspectorPayload> {
     const {
         basePath,
         lintConfigPath,
@@ -33,7 +15,6 @@ async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayl
         linterVersion,
         formatVersion,
     } = resolvedConfigPath
-    console.log(resolvedConfigPath)
 
     const oxfmt = await resolveOXFormatConfig(resolvedConfigPath)
 
@@ -64,11 +45,11 @@ async function readConfig(options: IResolveConfig): Promise<ILinterInspectorPayl
     }
 }
 
-readConfig(resolveConfig()).then((r) => {
-    console.log(r)
-    writeFileSync(
-        resolve(r.meta.basePath, 'oxc-inspector.meta.json'),
-        JSON.stringify(r, null, 2),
-        'utf-8',
-    )
-})
+// readConfig(resolveConfig()).then((r) => {
+//     console.log(r)
+//     writeFileSync(
+//         resolve(r.meta.basePath, 'oxc-inspector.meta.json'),
+//         JSON.stringify(r, null, 2),
+//         'utf-8',
+//     )
+// })

@@ -4,23 +4,56 @@
 
 <script lang="ts" setup>
 // oxlint-disable typescript/no-explicit-any
-import type { IOXLintConfig } from '#shared/types/types'
-import { meta, oxfmt, oxlint } from '~~/oxc-inspector.meta.json' with { type: 'json' }
+
+import type { IConfigInspectorMeta, IFormatConfigMeta, ILinterInspectorPayload } from '#shared/types/inspector'
+import type { ErrorInfo, IOXLintConfig } from '#shared/types/types'
+import { $fetch } from 'ofetch'
+// import { meta, oxfmt, oxlint } from '~~/oxc-inspector.meta.json' with { type: 'json' }
 import { providerConfigInspector } from '~/components/Config/index'
 
 defineOptions({
     name: 'ConfigInspectorContainer',
 })
 
+const config = useRuntimeConfig()
+
 const loading = ref<boolean>(true)
 
-setTimeout(() => {
-    loading.value = false
-}, 2000)
+const data = ref<ILinterInspectorPayload>()
 
-const oxLinter = computed(() => oxlint) as unknown as ComputedRef<IOXLintConfig>
-const oxFormat = computed<ILinterInspectorPayload['oxfmt'] | null>(() => oxfmt)
-const metaOptions = computed<ILinterInspectorPayload['meta']>(() => meta)
+let _promise: Promise<ILinterInspectorPayload | undefined> | undefined
+
+async function getData(baseURL: string) {
+    const payload = await $fetch<ILinterInspectorPayload | ErrorInfo>(`/api/payload.json`, { baseURL })
+    console.log(payload)
+    if ('error' in payload) {
+        loading.value = false
+        return ''
+    }
+    loading.value = false
+    data.value = payload
+    return payload
+}
+
+const payload = computed(() => data.value)
+
+async function init(baseURL: string) {
+    if (_promise) {
+        return
+    }
+
+    _promise = getData(baseURL).then((res) => {
+        if (!res)
+            return
+        return res
+    })
+}
+
+init(config.app.baseURL)
+
+const oxLinter = computed(() => payload.value?.oxlint) as ComputedRef<IOXLintConfig>
+const oxFormat = computed(() => payload.value?.oxfmt) as ComputedRef<IFormatConfigMeta[] | null>
+const metaOptions = computed(() => payload.value?.meta) as ComputedRef<IConfigInspectorMeta>
 
 const oxRules = computed(() => {
     const useRules = oxLinter.value.configs
@@ -53,7 +86,7 @@ const oxRules = computed(() => {
     const useRulesKey = Object.keys(useRules).filter(item => (t => t.length ? t : item)(item.split('/').slice(1)))
 
     const rulesMap = new Map<string, any>()
-    for (const [rule, ruleMeta] of Object.entries(oxlint.rules)) {
+    for (const [rule, ruleMeta] of Object.entries(payload.value?.oxlint.rules || {})) {
         if (!rulesMap.has(rule)) {
             rulesMap.set(rule, {})
         }
