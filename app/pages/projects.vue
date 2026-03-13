@@ -12,11 +12,11 @@
                         'relative flex flex-col justify-center items-center gap-4',
                         'bg-secondary dark:bg-slate-800/70 w-auto h-24 cursor-pointer',
                         'rounded-2xl transition-all',
-                        'text-foreground',
+                        'text-muted-foreground',
                         {
                             'opacity-20': !i.exists,
                         },
-                        'data-[exists=false]:hover:opacity-100 data-[exists=false]:hover:text-white',
+                        'data-[exists=false]:hover:opacity-100 dark:data-[exists=false]:hover:text-white',
                         'data-[exists=true]:hover:bg-teal-500/20',
                         'data-[exists=true]:hover:opacity-100',
                     )"
