@@ -96,23 +96,23 @@ const navMenus = [
         icon: 'ph:paint-brush-broad-fill',
         status: oxFormat.value != null,
     },
-    {
-        name: 'migration-rules',
-        label: 'migration rules',
-        icon: 'pajamas:merge',
-        status: true,
-    },
-    {
-        name: 'migration-configs',
-        label: 'migration configs',
-        icon: 'ph:file-code-duotone',
-        status: true,
-    },
-    {
-        name: 'eslint',
-        label: 'eslint configs',
-        icon: 'ph:stack-minus-duotone',
-        status: true,
-    },
+    // {
+    //     name: 'migration-rules',
+    //     label: 'migration rules',
+    //     icon: 'pajamas:merge',
+    //     status: true,
+    // },
+    // {
+    //     name: 'migration-configs',
+    //     label: 'migration configs',
+    //     icon: 'ph:file-code-duotone',
+    //     status: true,
+    // },
+    // {
+    //     name: 'eslint',
+    //     label: 'eslint configs',
+    //     icon: 'ph:stack-minus-duotone',
+    //     status: true,
+    // },
 ]
 </script>
