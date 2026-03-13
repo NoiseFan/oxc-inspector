@@ -9,12 +9,17 @@ import type {
 import type { ESLint } from 'eslint'
 import type { ExternalPluginEntry, OxlintConfig } from 'oxlint'
 import type { IOxlintRules, oxlintRuleMeta } from 'oxlint-rules-meta'
-import { interopDefault } from '@antfu/eslint-config'
 import { isObject } from '@vueuse/core'
 import c from 'ansis'
 import { getRuleMeta } from 'oxlint-rules-meta'
 import { x } from 'tinyexec'
 import { MARK_INFO } from '../constants'
+
+// Simple interop helper to get default export from ESM module
+async function interopDefault<T>(m: T | Promise<T>): Promise<T extends { default: infer D } ? D : T> {
+    const resolved = await m
+    return (resolved as any)?.default ?? resolved
+}
 
 // loading use lint rules config
 function resolveConfigRules(config: OxlintConfig): IResolveConfigMeta[] {
