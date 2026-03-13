@@ -20,13 +20,21 @@ const config = useRuntimeConfig()
 const loading = ref<boolean>(true)
 
 const data = ref<ILinterInspectorPayload>()
+const errorInfo = ref<ErrorInfo>()
 
 let _promise: Promise<ILinterInspectorPayload | undefined> | undefined
 
 async function getData(baseURL: string) {
-    const payload = await $fetch<ILinterInspectorPayload | ErrorInfo>(`/api/payload.json`, { baseURL })
+    const payload = await $fetch<ILinterInspectorPayload | ErrorInfo>(`/api/payload.json`, { baseURL }).catch(() => {
+        return {
+            error: 'Error',
+            message: 'Inspector data loading error, Please carefully review the error message displayed on the terminal.',
+        }
+    })
+    console.log(payload)
     if ('error' in payload) {
         loading.value = false
+        errorInfo.value = payload
         return ''
     }
     loading.value = false
@@ -113,6 +121,7 @@ const oxRules = computed(() => {
 })
 
 providerConfigInspector({
+    errorInfo,
     loading,
     oxLinter,
     oxFormat,
