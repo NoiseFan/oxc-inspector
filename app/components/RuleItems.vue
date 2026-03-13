@@ -1,5 +1,5 @@
 <template>
-    <div class="relative p-4 py-3 border rounded max-w-full overflow-hidden space-y-2">
+    <div class="relative p-4 py-3 border rounded max-w-full overflow-hidden space-y-2 h-full">
         <div class="absolute top-2 right-4">
             <template v-if="routePath === 'configs'">
                 <ConfigSeverityIcon
