@@ -2,12 +2,10 @@ import type { IResolveConfig } from '#shared/types/types'
 import { readFile, stat } from 'node:fs/promises'
 import { createServer } from 'node:http'
 import { join } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { createApp, eventHandler, serveStatic, toNodeListener } from 'h3'
 import { lookup } from 'mrmime'
+import { distDir } from '~~/src/dirs'
 import { createWebSocketServer } from '~~/src/ws'
-
-export const distDir = fileURLToPath(new URL('../dist/public', import.meta.url))
 
 export async function createHostServer(options: IResolveConfig) {
     const app = createApp()
