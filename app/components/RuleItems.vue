@@ -41,6 +41,25 @@
                                 Copy name
                             </Button>
                         </div>
+
+                        <div class="flex justify-start items-center gap-2 font-mono text-xs font-extrabold">
+                            <ConfigSeverityIcon
+                                :severity="getRuleSeverity(rule.level)"
+                            />
+                            <span class="opacity-40">Set to</span>
+                            <Button
+                                variant="secondary"
+                                size="sm"
+                                :class="cn(
+                                    'font-mono font-extrabold',
+                                    colors[getRuleSeverity(rule.level)],
+                                )"
+                            >
+                                {{ getRuleSeverity(rule.level) }}
+                            </Button>
+                            <span class="opacity-40">in this config</span>
+                        </div>
+
                         <Tabs
                             v-if="ruleOptions.length || defaultOptions.length"
                             :default-value="ruleOptions.length ? 'state' : (defaultOptions.length ? 'default' : '')"
@@ -113,4 +132,10 @@ const defaultOptions = computed(() => props.rule.defaultOptions.length ? props.r
 const ruleOptions = computed(() => props.rule.options ?? [])
 
 const routePath = computed(() => useRoute().name)
+
+const colors = {
+    error: 'text-red-500',
+    warn: 'text-amber-500',
+    off: 'text-gray-500',
+}
 </script>
