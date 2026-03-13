@@ -39,6 +39,7 @@ export interface ILinterInspectorPayload {
 }
 
 export interface IConfigInspector {
+    projects: ComputedRef<IResolveProjectConfig>
     errorInfo: Ref<ErrorInfo>
     loading: Ref<boolean>
     payload?: ShallowRef<ILinterInspectorPayload>

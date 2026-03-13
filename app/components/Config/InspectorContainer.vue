@@ -6,7 +6,7 @@
 // oxlint-disable typescript/no-explicit-any
 
 import type { IConfigInspectorMeta, IFormatConfigMeta, ILinterInspectorPayload } from '#shared/types/inspector'
-import type { ErrorInfo, IOXLintConfig } from '#shared/types/types'
+import type { ErrorInfo, IOXLintConfig, IResolveProjectConfig } from '#shared/types/types'
 import { $fetch } from 'ofetch'
 // import { meta, oxfmt, oxlint } from '~~/oxc-inspector.meta.json' with { type: 'json' }
 import { providerConfigInspector } from '~/components/Config/index'
@@ -62,6 +62,7 @@ init(config.app.baseURL)
 const oxLinter = computed(() => payload.value?.oxlint) as ComputedRef<IOXLintConfig>
 const oxFormat = computed(() => payload.value?.oxfmt) as ComputedRef<IFormatConfigMeta[] | null>
 const metaOptions = computed(() => payload.value?.meta) as ComputedRef<IConfigInspectorMeta>
+const projects = computed(() => payload.value?.projects) as ComputedRef<IResolveProjectConfig>
 
 const oxRules = computed(() => {
     const useRules = oxLinter.value.configs
@@ -121,6 +122,7 @@ const oxRules = computed(() => {
 })
 
 providerConfigInspector({
+    projects,
     errorInfo,
     loading,
     oxLinter,
