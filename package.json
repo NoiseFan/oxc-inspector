@@ -33,7 +33,8 @@
         "lint:fix": "eslint --fix",
         "prepare": "nuxt prepare && simple-git-hooks",
         "prepublishOnly": "pnpm build",
-        "migrate": "npx @oxlint/migrate ./eslint.config.mjs"
+        "migrate": "npx @oxlint/migrate ./eslint.config.mjs",
+        "test": "vitest"
     },
     "dependencies": {
         "@tanstack/vue-table": "^8.21.3",
