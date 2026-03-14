@@ -31,7 +31,7 @@
         "typecheck": "nuxt typecheck",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
-        "prepare": "simple-git-hooks",
+        "prepare": "nuxt prepare && simple-git-hooks",
         "prepublishOnly": "pnpm build",
         "migrate": "npx @oxlint/migrate ./eslint.config.mjs"
     },
